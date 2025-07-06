@@ -94,17 +94,16 @@ class SrodaWalkpGTFS(impuls.App):
                     impuls.model.Agency(
                         id="0",
                         name="Kombus",
-                        url="https://zditmminskmaz.pl",
+                        url="https://kombus.pl",
                         timezone="Europe/Warsaw",
                         lang="pl",
-                        phone="+48721390112",
                     ),
                     task_name="AddAgency",
                 ),
                 impuls.tasks.AddEntity(
                     entity=impuls.model.FeedInfo(
                         publisher_name="kasmar00",
-                        publisher_url="https://github.com/kasmar00/gtfs-warsaw-custom",
+                        publisher_url="https://github.com/kasmar00/gtfs-sroda-wlkp",
                         start_date=START_DATE,
                         end_date=END_DATE,
                         lang="pl",
