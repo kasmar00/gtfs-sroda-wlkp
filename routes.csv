@@ -1,0 +1,25 @@
+route_id,route_short_name,route_long_name,route_color
+1,1,1 - Dworzec PKP - Dworzec PKP,38492f
+2,2,2 - Dworzec PKP - Inwalidów Wojennych|Inwalidów Wojennych- Dworzec PKP,020621
+4,4,4 - Inwalidów Wojennych - Inwalidów Wojennych,c9bdd5
+5,5,5 - Inwalidów Wojennych - Inwalidów Wojennych,b7a7c7
+6,6,6 - Dworzec PKP - Dworzec PKP,cdb2b8
+7,7,7 - Inwalidów Wojennych - Inwalidów Wojennych,3c342c
+8,8,8 - Inwalidów Wojennych - Inwalidów Wojennych,685a4c
+10,10,10 - Dąbrowskiego Szkoła - Dąbrowskiego Szkoła,34e62f
+11,11,11 - Wałowa Kupiec Średzki - Limanowskiego Biblioteka,e12fe6
+12,12,12 - Dworzec PKS - Dworzec PKS,796011
+13,13,13 - Limanowskiego Biblioteka - Limanowskiego Biblioteka,011298
+14,14,14 - Dworzec PKS - Dworzec PKS,b8860b
+15,15,15 - Dąbrowskiego Szkoła - Dąbrowskiego Szkoła,5e77f9
+16,16,16 - Dąbrowskiego Szkoła - Dąbrowskiego Szkoła,4262ba
+17,17,17 - Dąbrowskiego Szkoła - Dąbrowskiego Szkoła,fa8072
+18,18,18 - Dworzec PKS - Zaniemyśl Rynek|Zaniemyśl Rynek - Dworzec PKS,fff8e7
+19,19,19 - Dworzec PKS - Zaniemyśl Rynek|Zaniemyśl Rynek - Dworzec PKS,621514
+20,20,"20 - Niedziałkowskiego Almarco - Słupia Wielka, Szkoła|Słupia Wielka, Szkoła - Słupia Wielka, Szkoła",cce0eb
+21,21,21 - Kórnicka - Kórnicka Gimnazjum 3|Kórnicka Gimnazjum 3 - Kórnicka Gimnazjum 3,c9d3d8
+22,22,22 - Kórnicka Gimnazjum 3 - Kórnicka Gimnazjum 3,c6d4d8
+23,23,23 - Lipowa/Szkoła-Starkówiec/Szkoła|Starkówiec/Szkoła - Lipowa/Szkoła,38492f
+24,24,24 - Dworzec PKS - Dworzec PKS,696969
+25,25,25 - Dworzec PKS - Łękno|Łękno - Kórnicka Gimnazjum 3,dae7ef
+26,26,26 - Kórnicka Gimnazjum 3 - Łękno|Łękno - Kórnicka Gimnazjum 3,cedfea
