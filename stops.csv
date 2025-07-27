@@ -1,1 +1,5 @@
 stop_id,stop_name,stop_lat,stop_lon
+3:100:01,Dworzec PKP,52.217974,17.275883
+3:118:STOP,Inwalidów Wojennych,52.22775,17.280303
+3:122:02,Dąbrowskiego/Szkoła,52.226185,17.282887
+LIPO-00,Lipowa/Szkoła,52.225795,17.279257
