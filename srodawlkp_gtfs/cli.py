@@ -1,7 +1,6 @@
 import impuls
 import argparse
 from datetime import datetime
-from .consts import START_DATE, END_DATE
 from .scrape_api import ScrapeAPI
 
 
@@ -82,7 +81,7 @@ GTFS_HEADERS = {
 
 class SrodaWalkpGTFS(impuls.App):
     """
-    Sroda Walkp GTFS data importer.
+    Sroda Wlkp GTFS data importer.
     """
 
     def prepare(
@@ -104,8 +103,6 @@ class SrodaWalkpGTFS(impuls.App):
                     entity=impuls.model.FeedInfo(
                         publisher_name="kasmar00",
                         publisher_url="https://github.com/kasmar00/gtfs-sroda-wlkp",
-                        start_date=START_DATE,
-                        end_date=END_DATE,
                         lang="pl",
                         version=datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
                     ),
