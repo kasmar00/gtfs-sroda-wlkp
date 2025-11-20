@@ -19,7 +19,6 @@ class ScrapeAPI(impuls.Task):
             ]:
                 data = self.endpoint.get_current_route_data(route_id)["data"]
 
-
                 r.db.create(
                     impuls.model.Route(
                         id=route_id,
@@ -48,16 +47,35 @@ class ScrapeAPI(impuls.Task):
                                 sunday=calendar["sunday"],
                             )
                         )
+                        r.db.create(
+                            impuls.model.Calendar(
+                                id=get_school_only_cal_id(calendar["service_id"]),
+                                start_date=start_date,
+                                end_date=end_date,
+                                monday=calendar["monday"],
+                                tuesday=calendar["tuesday"],
+                                wednesday=calendar["wednesday"],
+                                thursday=calendar["thursday"],
+                                friday=calendar["friday"],
+                                saturday=calendar["saturday"],
+                                sunday=calendar["sunday"],
+                            )
+                        )
                     except sqlite3.IntegrityError:
                         # Calendar already exists, skip it
                         pass
 
                 for trip in data["trips"]:
+                    calendar_id = (
+                        get_school_only_cal_id(trip["service_id"])
+                        if is_school_trip_id(trip["trip_id"])
+                        else trip["service_id"]
+                    )
                     r.db.create(
                         impuls.model.Trip(
                             id=trip["trip_id"],
                             route_id=trip["route_id"],
-                            calendar_id=trip["service_id"],
+                            calendar_id=calendar_id,
                             # direction=trip["direction_id"],
                         )
                     )
@@ -77,7 +95,6 @@ class ScrapeAPI(impuls.Task):
                         # Stop already exists, skip it
                         pass
 
-                
                 for stop_time in data["stopTimes"]:
                     r.db.create(
                         impuls.model.StopTime(
@@ -99,3 +116,13 @@ def _format_date(date: int) -> str:
 def _hour_to_time_point(time: str) -> impuls.model.TimePoint:
     hour, minute = time.split(":")
     return impuls.model.TimePoint(hours=int(hour), minutes=int(minute))
+
+
+def get_school_only_cal_id(calendar_id: str) -> str:
+    return calendar_id + "_SCHOOL_ONLY"
+
+def is_school_trip_id(trip_id: str) -> bool:
+    for suffix in ["^s", "^SZ"]:
+        if suffix in trip_id:
+            return True
+    return False

@@ -1,6 +1,8 @@
 import impuls
 import argparse
 from datetime import datetime
+
+from srodawlkp_gtfs.calendar_exceptions import AddCalendarExceptions
 from .scrape_api import ScrapeAPI
 
 
@@ -109,6 +111,7 @@ class SrodaWalkpGTFS(impuls.App):
                     task_name="AddFeedInfo",
                 ),
                 ScrapeAPI(),
+                AddCalendarExceptions(),
                 impuls.tasks.ModifyRoutesFromCSV("routes.csv",),
                 impuls.tasks.ModifyStopsFromCSV("stops.csv"),
                 impuls.tasks.GenerateTripHeadsign(),
@@ -120,6 +123,7 @@ class SrodaWalkpGTFS(impuls.App):
             resources={
                 "stops.csv": impuls.LocalResource("stops.csv"),
                 "routes.csv": impuls.LocalResource("routes.csv"),
+                "exceptions": impuls.tools.polish_calendar_exceptions.RESOURCE
             },
         )
 
