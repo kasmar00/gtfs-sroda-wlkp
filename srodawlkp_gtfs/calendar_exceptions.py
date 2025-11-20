@@ -26,9 +26,11 @@ class AddCalendarExceptions(impuls.Task):
                 if (
                     impuls.tools.polish_calendar_exceptions.CalendarExceptionType.NO_SCHOOL
                     not in exception.typ
+                    and impuls.tools.polish_calendar_exceptions.CalendarExceptionType.HOLIDAY
+                    not in exception.typ
                 ):
                     continue
-                
+
                 date_str = str(date)
 
                 for id in ids:
