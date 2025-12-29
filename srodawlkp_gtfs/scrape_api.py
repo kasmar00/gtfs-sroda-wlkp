@@ -96,16 +96,19 @@ class ScrapeAPI(impuls.Task):
                         pass
 
                 for stop_time in data["stopTimes"]:
-                    r.db.create(
-                        impuls.model.StopTime(
-                            trip_id=stop_time["trip_id"],
-                            stop_id=stop_time["stop_id"],
-                            stop_sequence=stop_time["stop_sequence"],
-                            arrival_time=_hour_to_time_point(stop_time["arrival_time"]),
-                            departure_time=_hour_to_time_point(stop_time["departure_time"]),
-                            # stop_headsign=stop_time.get("stop_headsign"),
+                    try:
+                        r.db.create(
+                            impuls.model.StopTime(
+                                trip_id=stop_time["trip_id"],
+                                stop_id=stop_time["stop_id"],
+                                stop_sequence=stop_time["stop_sequence"],
+                                arrival_time=_hour_to_time_point(stop_time["arrival_time"]),
+                                departure_time=_hour_to_time_point(stop_time["departure_time"]),
+                                # stop_headsign=stop_time.get("stop_headsign"),
+                            )
                         )
-                    )
+                    except Exception as e:
+                        self.logger.warning(f"Unable to create stop_time due to: {e}, data: {stop_time}")
 
 
 def _format_date(date: int) -> str:
