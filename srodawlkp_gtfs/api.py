@@ -2,6 +2,10 @@ import os
 import time
 from typing import Any, NamedTuple, TypedDict
 import logging
+import hmac
+import hashlib
+import base64
+
 
 import requests
 from impuls.model import TimePoint
@@ -101,13 +105,23 @@ class Endpoint:
             return response.json()
 
     def call(self, path: str, data: dict) -> Any:
+        secret = base64.b64decode("JCVaV0F9d3NIZCxCZDhkJW9ZRG9hJk9SbFckcz9IeShzWSgkYm9edk56ZjxSVktvVkw3SD5sLXtkTyZQczk+JA==")
+        timestamp = str(int(time.time() * 1000))
+        signature = hmac.new(
+            key=secret,
+            msg=timestamp.encode("utf-8"),
+            digestmod=hashlib.sha256,
+        ).hexdigest()
+        auth = base64.b64decode("QmFzaWMgYzI5dVVsZDVkVEIyZDFKTFpqVXpNMlp1UlZkNmJrdFNOVmN4V25sTFVsVnFiM1paY0RKcWMyNUxSVEU1UlRGeFdWZEtadz09")
         request = requests.Request(
             method="POST",
             url=f"https://rozklad.kombus.pl/api/{path}",
             json=data,
             headers={
-                "Authorization": "Basic c29uUld5dTB2d1JLZjUzM2ZuRVd6bktSNVcxWnlLUlVqb3ZZcDJqc25LRTE5RTFxWVdKZw==",
+                "Authorization": auth,
                 "Content-Type": "application/json",
+                "X-Signature": signature,
+                "X-Timestamp": timestamp
             },
         )
         retries = 3
